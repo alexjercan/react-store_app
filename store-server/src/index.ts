@@ -18,8 +18,12 @@ const getStores = async() => {
             headers: {'Ocp-Apim-Subscription-Key': `${process.env.KAUFLAND_API_KEY}`}
         });
 
-        const body = await response.json();
-        return body;
+        if (response.status !== 400) {
+            const body = await response.json();
+            return body;
+        }
+
+        return undefined;
     }
     catch(err) {
         console.log(err);
