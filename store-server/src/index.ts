@@ -34,6 +34,11 @@ getStores().then((data) => {
     stores = data;
 });
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 app.get( "/", ( req, res ) => {
     console.log(stores);
     res.send(stores);
