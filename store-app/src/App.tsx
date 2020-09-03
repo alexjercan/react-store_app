@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
+import Form from './components/Form';
+import ShopList from './components/ShopList';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello React</h1>
-    </div>
-  );
+const App: React.FC = () => {
+    return (
+        <div className="App">
+            <Form />
+            <ShopList />
+        </div>
+    );
 }
 
 export default App;
