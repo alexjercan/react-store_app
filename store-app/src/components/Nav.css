@@ -1,0 +1,42 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.kaufland {
+  color: rgb(251, 251, 255);
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+  box-sizing: border-box;
+}
+
+.settings {
+  width: 260px;
+}
+
+.option {
+  display: flex;
+  align-content: center;
+  box-sizing: border-box;
+  padding: 15px 14px;
+  margin: 0;
+}
+
+.option:hover {
+  background: rgb(255, 127, 80);
+  box-shadow: 0 0 30px -10px rgb(4, 15, 22);
+}
+
+.input {
+  color: rgb(251, 251, 255);
+  background: transparent;
+  border: 0px solid;
+  outline: none;
+  font-size: 1rem;
+}
+
+.label {
+  color: rgb(251, 251, 255);
+  font-size: 1rem;
+}

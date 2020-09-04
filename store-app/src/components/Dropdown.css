@@ -1,0 +1,29 @@
+.menu {
+  cursor: pointer;
+}
+
+.title {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgb(251, 251, 255);
+  padding: 14px;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 0 40px -10px rgb(4, 15, 22);
+  color: rgb(4, 15, 22);
+}
+
+.dropdown {
+  width: 100%;
+  background: rgb(251, 251, 255);
+  border-radius: 4px;
+  box-shadow: 0 0 40px -10px rgb(4, 15, 22);
+  margin-top: 24px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.down {
+  max-height: 150px;
+}

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import ShopList from "./components/StoreList";
-import Form from "./components/Form";
+import Nav from "./components/Nav";
 
 const App: React.FC = () => {
-  const [maxRadius, setMaxRadius] = useState<number>(0);
-  const [radius, setRadius] = useState<number>(0);
+  const [maxRadius, setMaxRadius] = useState<number>(100);
+  const [radius, setRadius] = useState<number>(10);
   const [allStores, setAllStores] = useState<TStore[] | undefined>();
   const [coords, setCoords] = useState<TCoordinates>({
     latitude: 0,
@@ -68,8 +68,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      <h1 className="title">Kaufland Stores</h1>
-      <Form
+      <Nav
         setRadius={setRadius}
         radius={radius}
         maxRadius={maxRadius}
