@@ -16,10 +16,13 @@ const StoreList: React.FC = () => {
   const [position, setPosition] = useState<Coordinates | null>();
 
   useEffect(() => {
-    const getStores = async () => {
-      const response = await fetch("http://localhost:8080/", {
-        method: "GET",
-      });
+    const getStores = async (position: Coordinates) => {
+      const response = await fetch(
+        `http://localhost:8080/?lat=${position.latitude}&lon=${position.longitude}`,
+        {
+          method: "POST",
+        }
+      );
 
       if (response.status !== 400) {
         const dataArray: any[] = await response.json();
@@ -33,13 +36,15 @@ const StoreList: React.FC = () => {
     };
 
     navigator.geolocation.getCurrentPosition((position) => {
-      setPosition({
+      const pos = {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
-      });
-    });
+      };
 
-    getStores();
+      setPosition(pos);
+
+      getStores(pos);
+    });
   }, []);
 
   console.log(position);
