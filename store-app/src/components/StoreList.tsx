@@ -1,59 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Store from "./Store";
+import React from "react";
+import StoreElement from "./Store";
+import { Store } from "../types";
 
-interface Store {
-  id: string;
-  name: string;
+interface Props {
+  radius: number;
+  stores: Store[] | undefined;
 }
 
-interface Coordinates {
-  latitude: number;
-  longitude: number;
-}
-
-const StoreList: React.FC = () => {
-  const [stores, setStores] = useState<Store[] | null>();
-  const [position, setPosition] = useState<Coordinates | null>();
-
-  useEffect(() => {
-    const getStores = async (position: Coordinates) => {
-      const response = await fetch(
-        `http://localhost:8080/?lat=${position.latitude}&lon=${position.longitude}`,
-        {
-          method: "POST",
-        }
-      );
-
-      if (response.status !== 400) {
-        const dataArray: any[] = await response.json();
-        const storesArray = dataArray.map(
-          (store): Store => {
-            return { id: store.storeId, name: store.name };
-          }
-        );
-        setStores(storesArray);
-      }
-    };
-
-    navigator.geolocation.getCurrentPosition((position) => {
-      const pos = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      };
-
-      setPosition(pos);
-
-      getStores(pos);
-    });
-  }, []);
-
-  console.log(position);
-
+const StoreList: React.FC<Props> = (props) => {
   return (
     <div>
       <ul>
-        {stores?.map((store) => (
-          <Store key={store.id} name={store.name} />
+        {props.stores?.map((store) => (
+          <StoreElement key={store.id} name={store.name} />
         ))}
       </ul>
     </div>

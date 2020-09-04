@@ -14,8 +14,6 @@ const kauflandApiURL = "https://api.kaufland.net/stores/api/v1/";
 const app = express();
 const port = 8080;
 
-const radius = 100;
-
 type StoreArray = any[];
 let stores: StoreArray = [];
 
@@ -39,16 +37,13 @@ const getStores = async () => {
   }
 };
 
-const getStoresNearPosition = (position: Coordinates) => {
+const getStoresNearPosition = (position: Coordinates, radius: number) => {
   return stores.filter((store): boolean => {
     const storePosition: Coordinates = {
       latitude: store.latitude,
       longitude: store.longitude,
     };
     const distance = getDistance(storePosition, position);
-    console.log(
-      `${distance} ${store.name} ${storePosition.latitude} ${storePosition.longitude} ${position.latitude} ${position.longitude}`
-    );
     return distance <= radius;
   });
 };
@@ -75,8 +70,10 @@ getStores().then((data) => {
   stores = data;
 });
 
+app.use(express.json());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 
@@ -85,8 +82,14 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const position = { latitude: +req.query.lat, longitude: +req.query.lon };
-  res.send(getStoresNearPosition(position));
+  const data = req.body.data;
+  console.log(data);
+  const position = {
+    latitude: +data.position.latitude,
+    longitude: +data.position.longitude,
+  };
+  const radius = data.radius;
+  res.send(getStoresNearPosition(position, radius));
 });
 
 app.listen(port);
