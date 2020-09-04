@@ -6,9 +6,17 @@ interface Store {
     name: string
 }
 
-const StoreList: React.FC = () => {
+interface Coordinates {
+    latitude: number
+    longitude: number
+}
 
+const StoreList: React.FC = () => {
     const [stores, setStores] = useState<Store[]>([]);
+    const [position, setPosition] = useState<Coordinates | undefined>(undefined);
+
+    useEffect(() => {
+    }, []);
 
     useEffect(() => {
         const getStores = async () => {
@@ -25,8 +33,14 @@ const StoreList: React.FC = () => {
             }
         }
 
+        navigator.geolocation.getCurrentPosition((position) => {
+            setPosition({latitude: position.coords.latitude, longitude: position.coords.longitude});
+        });
+
         getStores();
     }, []);
+    
+    console.log(position);
 
     return (
         <div>
