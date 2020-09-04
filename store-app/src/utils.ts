@@ -54,12 +54,11 @@ export const getStoresNearCoords = (
   coords: Coordinates,
   radius: number
 ) => {
-  return stores?.filter((store): boolean => {
-    const storePosition: Coordinates = {
-      latitude: store.coords.latitude,
-      longitude: store.coords.longitude,
-    };
-    const distance = getDistance(storePosition, coords);
-    return distance <= radius;
-  });
+  return stores
+    ?.sort((a: Store, b: Store) => {
+      return getDistance(a.coords, coords) - getDistance(b.coords, coords);
+    })
+    .filter((store): boolean => {
+      return getDistance(store.coords, coords) <= radius;
+    });
 };

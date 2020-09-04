@@ -6,7 +6,7 @@ import { Store, Coordinates } from "./types";
 import { getStores } from "./utils";
 
 const App: React.FC = () => {
-  const maxRadius = 100;
+  const [maxRadius, setMaxRadius] = useState<number>(0);
   const [radius, setRadius] = useState<number>(0);
   const [allStores, setAllStores] = useState<Store[] | undefined>();
   const [coords, setCoords] = useState<Coordinates>({
@@ -28,7 +28,12 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Form setRadius={setRadius} radius={radius} />
+      <Form
+        setRadius={setRadius}
+        radius={radius}
+        maxRadius={maxRadius}
+        setMaxRadius={setMaxRadius}
+      />
       <ShopList radius={radius} coords={coords} allStores={allStores} />
     </div>
   );
