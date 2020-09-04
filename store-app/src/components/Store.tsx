@@ -4,7 +4,7 @@ interface Props {
     name: string
 }
 
-const Shop: React.FC<Props> = (props) => {
+const Store: React.FC<Props> = (props) => {
     return (
         <li>
             {
@@ -14,6 +14,6 @@ const Shop: React.FC<Props> = (props) => {
     );
 };
 
-export default Shop;
+export default Store;
 
 
