@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Form.css";
 
 interface Props {
   radius: number;
@@ -42,8 +43,8 @@ const Form: React.FC<Props> = (props) => {
   return (
     <div>
       <ul>
-        <li>
-          Range
+        <li className="option">
+          <div className="label">Range</div>
           <input
             type="range"
             min="0"
@@ -52,9 +53,10 @@ const Form: React.FC<Props> = (props) => {
             value={props.radius}
           />
         </li>
-        <li>
-          Range
+        <li className="option">
+          <div className="label">Range</div>
           <input
+            className="input"
             type="text"
             pattern="[0-9]*"
             onKeyDown={radiusValidate}
@@ -62,9 +64,10 @@ const Form: React.FC<Props> = (props) => {
             value={radiusValue}
           />
         </li>
-        <li>
-          Max Range
+        <li className="option">
+          <div className="label">Max Range</div>
           <input
+            className="input"
             type="text"
             pattern="[0-9]*"
             onKeyDown={maxRadiusValidate}

@@ -1,0 +1,28 @@
+.store {
+    counter-increment: index; 
+    color: rgb(251, 251, 255);
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    box-sizing: border-box;
+}
+
+.store::before {
+    content: counters(index, ".", decimal-leading-zero);
+    font-size: 1.5rem;
+    text-align: right;
+    font-weight: bold;
+    min-width: 50px;
+    padding-right: 12px;
+    font-variant-numeric: tabular-nums;
+    align-self: flex-start;
+    background-image: linear-gradient(to bottom, rgb(251, 251, 255), rgb(184, 12, 9));
+    background-attachment: fixed;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+  
+.store + .store {
+    border-top: 1px solid rgba(255,255,255,0.2);
+}

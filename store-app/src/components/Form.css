@@ -1,0 +1,18 @@
+.option {
+    display: flex;
+    padding: 12px 0;
+    box-sizing: border-box;
+}
+
+.input {
+    color: rgb(251, 251, 255);
+    background: transparent;
+    border: 0px solid;
+    outline: none;
+    font-size: 1rem
+}
+
+.label {
+    color: rgb(251, 251, 255);
+    font-size: 1rem
+}

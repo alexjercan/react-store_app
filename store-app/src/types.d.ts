@@ -1,7 +1,7 @@
 interface IStore {
   id: string;
   name: string;
-  coords: Coordinates;
+  coords: TCoordinates;
 }
 
 interface ICoordinates {
@@ -9,5 +9,5 @@ interface ICoordinates {
   longitude: number;
 }
 
-export type Store = IStore;
-export type Coordinates = ICoordinates;
+type TStore = IStore;
+type TCoordinates = ICoordinates;
