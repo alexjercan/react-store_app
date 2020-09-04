@@ -1,7 +1,7 @@
 interface IStore {
   id: string;
   name: string;
-  position: Coordinates;
+  coords: Coordinates;
 }
 
 interface ICoordinates {

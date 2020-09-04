@@ -8,7 +8,11 @@ import { getStores } from "./utils";
 const App: React.FC = () => {
   const maxRadius = 100;
   const [radius, setRadius] = useState<number>(0);
-  const [stores, setStores] = useState<Store[] | undefined>();
+  const [allStores, setAllStores] = useState<Store[] | undefined>();
+  const [coords, setCoords] = useState<Coordinates>({
+    latitude: 0,
+    longitude: 0,
+  });
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -17,14 +21,15 @@ const App: React.FC = () => {
         longitude: position.coords.longitude,
       };
 
-      getStores(pos, maxRadius).then(setStores);
+      setCoords(pos);
+      getStores(pos, maxRadius).then(setAllStores);
     });
   }, [maxRadius]);
 
   return (
     <div className="App">
       <Form setRadius={setRadius} radius={radius} />
-      <ShopList radius={radius} stores={stores} />
+      <ShopList radius={radius} coords={coords} allStores={allStores} />
     </div>
   );
 };
