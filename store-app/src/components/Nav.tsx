@@ -40,7 +40,7 @@ const Nav: React.FC<Props> = (props) => {
           Settings
         </div>
         <div className={setting ? "dropdown" : "dropdown.down"}>
-          <p className="option">
+          <div className="option">
             <div className="label">Range</div>
             <input
               type="range"
@@ -50,8 +50,8 @@ const Nav: React.FC<Props> = (props) => {
               value={Math.min(props.radius, maxRadiusValue)}
             />
             <div className="label">{props.radius}</div>
-          </p>
-          <p className="option">
+          </div>
+          <div className="option">
             <div className="label">Max Range</div>
             <input
               className="input"
@@ -61,7 +61,7 @@ const Nav: React.FC<Props> = (props) => {
               onChange={maxRadiusTextHandler}
               value={maxRadiusValue}
             />{" "}
-          </p>
+          </div>
         </div>
       </div>
     </div>
