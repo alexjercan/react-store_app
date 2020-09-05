@@ -1,18 +1,21 @@
 .nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .kaufland {
-  color: rgb(251, 251, 255);
-  display: flex;
-  justify-content: center;
-  padding: 12px 0;
-  box-sizing: border-box;
+  flex: 2;
+  background: linear-gradient(to right, rgb(184, 12, 9), rgb(251, 251, 255));
+  font-size: 2.5rem;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  justify-content: flex-start;
 }
 
 .settings {
-  width: 260px;
+  flex: 1;
+  justify-content: flex-end;
 }
 
 .option {

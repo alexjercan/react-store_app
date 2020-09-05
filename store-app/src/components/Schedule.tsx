@@ -7,20 +7,31 @@ interface Props {
 
 const Schedule: React.FC<Props> = (props) => {
   return (
-    <div>
-      {props.schedule.days.map((day) => {
-        return (
-          <div key={day.weekday}>
-            <div className="day">
-              <div>{day.weekday}</div>
-              <div>{day.open}</div>
-              <div>{day.close}</div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+    <table className="schedule">
+      <thead>
+        <tr className="row">
+          <th className="col">Weekday</th>
+          <th className="col">Open</th>
+          <th className="col">Close</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.schedule.days.map((day) => {
+          return (
+            <tr key={day.weekday} className="row">
+              <td className="col">{day.weekday}</td>
+              <td className="col">{day.open}</td>
+              <td className="col">{day.close}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 
 export default Schedule;
+
+/*
+
+*/

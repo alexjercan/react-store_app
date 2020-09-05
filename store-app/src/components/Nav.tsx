@@ -33,13 +33,13 @@ const Nav: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="nav">
+    <nav className="nav">
       <h1 className="kaufland">Kaufland Stores</h1>
       <div className="menu settings">
         <div className="title" onClick={menuClickedHandler}>
           Settings
         </div>
-        <div className={setting ? "dropdown" : "dropdown.down"}>
+        <div className={setting ? "down" : "dropdown"}>
           <div className="option">
             <div className="label">Range</div>
             <input
@@ -64,7 +64,7 @@ const Nav: React.FC<Props> = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

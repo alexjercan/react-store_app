@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import ShopList from "./components/StoreList";
+import StoreList from "./components/StoreList";
 import Nav from "./components/Nav";
 
 const App: React.FC = () => {
@@ -13,72 +13,69 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    const updateLocation = () => {
+    const getStoresAtLocation = (radius: number) => {
       navigator.geolocation.getCurrentPosition((position) => {
+        const getStoresInRange = (radius: number, coords: TCoordinates) => {
+          const getStores = async (position: TCoordinates, radius: number) => {
+            const response = await fetch("http://localhost:8080/", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                data: { position: position, radius: radius },
+              }),
+            });
+
+            if (response.status !== 400) {
+              const dataArray: any[] = await response.json();
+              const storesArray = dataArray.map(
+                (store): TStore => {
+                  const dataOpeningHoursArray: any[] = store.openingHours;
+                  const days: TDaySChedule[] = dataOpeningHoursArray.map(
+                    (day): TDaySChedule => {
+                      return {
+                        weekday: day.weekday,
+                        open: day.open,
+                        close: day.close,
+                      };
+                    }
+                  );
+
+                  return {
+                    id: store.storeId,
+                    name: store.name,
+                    coords: {
+                      latitude: store.latitude,
+                      longitude: store.longitude,
+                    },
+                    schedule: {
+                      days: days,
+                    },
+                  };
+                }
+              );
+
+              return storesArray;
+            }
+          };
+
+          getStores(coords, radius).then(setAllStores);
+        };
+
         const pos: TCoordinates = {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         };
 
         setCoords(pos);
+        getStoresInRange(radius, pos);
       });
     };
 
-    updateLocation();
-  }, []);
-
-  useEffect(() => {
-    const getStoresInRange = (radius: number) => {
-      const getStores = async (position: TCoordinates, radius: number) => {
-        const response = await fetch("http://localhost:8080/", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            data: { position: position, radius: radius },
-          }),
-        });
-
-        if (response.status !== 400) {
-          const dataArray: any[] = await response.json();
-          const storesArray = dataArray.map(
-            (store): TStore => {
-              const dataOpeningHoursArray: any[] = store.openingHours;
-              const days: TDaySChedule[] = dataOpeningHoursArray.map(
-                (day): TDaySChedule => {
-                  return {
-                    weekday: day.weekday,
-                    open: day.open,
-                    close: day.close,
-                  };
-                }
-              );
-
-              return {
-                id: store.storeId,
-                name: store.name,
-                coords: {
-                  latitude: store.latitude,
-                  longitude: store.longitude,
-                },
-                schedule: {
-                  days: days,
-                },
-              };
-            }
-          );
-
-          return storesArray;
-        }
-      };
-
-      getStores(coords, maxRadius).then(setAllStores);
-    };
-
-    getStoresInRange(maxRadius);
-  }, [maxRadius, coords]);
+    getStoresAtLocation(maxRadius);
+  }, [maxRadius]);
 
   return (
     <div className="app">
@@ -88,7 +85,7 @@ const App: React.FC = () => {
         maxRadius={maxRadius}
         setMaxRadius={setMaxRadius}
       />
-      <ShopList radius={radius} coords={coords} allStores={allStores} />
+      <StoreList radius={radius} coords={coords} allStores={allStores} />
     </div>
   );
 };

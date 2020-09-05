@@ -1,13 +1,18 @@
-.day {
-  display: flex;
-  align-content: flex-end;
-  flex-wrap: wrap;
-  align-content: space-between;
+.schedule {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.day > div {
-  width: 25px;
-  margin: 10px;
-  text-align: center;
-  line-height: 10px;
+.row {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid rgb(251, 251, 255);
+}
+
+.row:hover {
+  background-color: rgb(255, 127, 80);
+}
+
+.col {
+  justify-content: flex-start;
 }

@@ -1,9 +1,9 @@
 .store {
   counter-increment: index;
   color: rgb(251, 251, 255);
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   padding: 12px 0;
   box-sizing: border-box;
 }
@@ -11,7 +11,6 @@
 .store::before {
   content: counters(index, ".", decimal-leading-zero);
   font-size: 1.5rem;
-  text-align: right;
   font-weight: bold;
   min-width: 50px;
   padding-right: 12px;

@@ -48,12 +48,10 @@ const StoreList: React.FC<Props> = (props) => {
   }, [props.radius, props.allStores, props.coords]);
 
   return (
-    <div>
-      <ul className="storeList">
-        {stores?.map((store) => (
-          <Store key={store.id} store={store} />
-        ))}
-      </ul>
+    <div className="storeList">
+      {stores?.map((store) => (
+        <Store key={store.id} store={store} />
+      ))}
     </div>
   );
 };

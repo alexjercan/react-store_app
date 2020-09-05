@@ -15,14 +15,14 @@ const Store: React.FC<Props> = (props) => {
   };
 
   return (
-    <li className="store">
+    <div className="store">
       <div className="menu" onClick={storeClickedHandler}>
         {props.store.name}
       </div>
-      <div className={show ? "dropdown.down" : "dropdown"}>
+      <div className={show ? "down" : "dropdown"}>
         <Schedule schedule={props.store.schedule} />
       </div>
-    </li>
+    </div>
   );
 };
 

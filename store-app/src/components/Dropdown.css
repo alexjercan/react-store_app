@@ -1,5 +1,6 @@
 .menu {
   cursor: pointer;
+  width: 100%;
 }
 
 .title {
@@ -15,7 +16,7 @@
 
 .dropdown {
   width: 100%;
-  background: rgb(251, 251, 255);
+  background: rgb(0, 0, 0, 0);
   border-radius: 4px;
   box-shadow: 0 0 40px -10px rgb(4, 15, 22);
   margin-top: 24px;
@@ -25,5 +26,6 @@
 }
 
 .down {
-  max-height: 150px;
+  width: 100%;
+  transition: all 0.5s;
 }
