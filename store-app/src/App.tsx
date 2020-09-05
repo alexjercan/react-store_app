@@ -45,12 +45,26 @@ const App: React.FC = () => {
           const dataArray: any[] = await response.json();
           const storesArray = dataArray.map(
             (store): TStore => {
+              const dataOpeningHoursArray: any[] = store.openingHours;
+              const days: TDaySChedule[] = dataOpeningHoursArray.map(
+                (day): TDaySChedule => {
+                  return {
+                    weekday: day.weekday,
+                    open: day.open,
+                    close: day.close,
+                  };
+                }
+              );
+
               return {
                 id: store.storeId,
                 name: store.name,
                 coords: {
                   latitude: store.latitude,
                   longitude: store.longitude,
+                },
+                schedule: {
+                  days: days,
                 },
               };
             }

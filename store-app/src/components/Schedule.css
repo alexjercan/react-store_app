@@ -1,0 +1,13 @@
+.day {
+  display: flex;
+  align-content: flex-end;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.day > div {
+  width: 25px;
+  margin: 10px;
+  text-align: center;
+  line-height: 10px;
+}

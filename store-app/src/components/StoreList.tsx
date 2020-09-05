@@ -9,7 +9,7 @@ interface Props {
 }
 
 const StoreList: React.FC<Props> = (props) => {
-  const [stores, setStores] = useState<TStore[] | undefined>();
+  const [stores, setStores] = useState<TStore[]>();
 
   useEffect(() => {
     const getStoresNearCoords = (

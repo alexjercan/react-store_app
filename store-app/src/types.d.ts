@@ -2,6 +2,7 @@ interface IStore {
   id: string;
   name: string;
   coords: TCoordinates;
+  schedule: TSchedule;
 }
 
 interface ICoordinates {
@@ -9,5 +10,17 @@ interface ICoordinates {
   longitude: number;
 }
 
+interface ISchedule {
+  days: IDaySchedule[];
+}
+
+interface IDaySchedule {
+  weekday: string;
+  open: number;
+  close: number;
+}
+
 type TStore = IStore;
 type TCoordinates = ICoordinates;
+type TDaySChedule = IDaySchedule;
+type TSchedule = ISchedule;

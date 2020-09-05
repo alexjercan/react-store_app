@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Schedule from "./Schedule";
 import "./Store.css";
 import "./Dropdown.css";
 
@@ -18,10 +19,9 @@ const Store: React.FC<Props> = (props) => {
       <div className="menu" onClick={storeClickedHandler}>
         {props.store.name}
       </div>
-      <ul className={show ? "dropdown.down" : "dropdown"}>
-        <li>{props.store.coords.latitude}</li>
-        <li>{props.store.coords.longitude}</li>
-      </ul>
+      <div className={show ? "dropdown.down" : "dropdown"}>
+        <Schedule schedule={props.store.schedule} />
+      </div>
     </li>
   );
 };
