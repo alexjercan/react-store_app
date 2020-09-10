@@ -27,8 +27,7 @@ const getStores = async () => {
     });
 
     if (response.status !== 400) {
-      const body = await response.json();
-      return body;
+      return await response.json();
     }
 
     return undefined;
@@ -62,8 +61,7 @@ const getDistance = (p: Coordinates, q: Coordinates) => {
     Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
     Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const d = R * c;
-  return d;
+  return R * c;
 };
 
 getStores().then((data) => {
@@ -72,8 +70,8 @@ getStores().then((data) => {
 
 app.use(express.json());
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
 

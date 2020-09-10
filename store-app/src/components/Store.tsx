@@ -10,7 +10,7 @@ interface Props {
 const Store: React.FC<Props> = (props) => {
   const [show, setShow] = useState<boolean>(false);
 
-  const storeClickedHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+  const storeClickedHandler = () => {
     setShow(!show);
   };
 

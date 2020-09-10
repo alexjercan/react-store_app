@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import "./App.css";
 import StoreList from "./components/StoreList";
 import Nav from "./components/Nav";
@@ -30,34 +30,32 @@ const App: React.FC = () => {
 
             if (response.status !== 400) {
               const dataArray: any[] = await response.json();
-              const storesArray = dataArray.map(
-                (store): TStore => {
-                  const dataOpeningHoursArray: any[] = store.openingHours;
-                  const days: TDaySChedule[] = dataOpeningHoursArray.map(
-                    (day): TDaySChedule => {
+                return dataArray.map(
+                  (store): TStore => {
+                      const dataOpeningHoursArray: any[] = store.openingHours;
+                      const days: TDaySChedule[] = dataOpeningHoursArray.map(
+                          (day): TDaySChedule => {
+                              return {
+                                  weekday: day.weekday,
+                                  open: day.open,
+                                  close: day.close,
+                              };
+                          }
+                      );
+
                       return {
-                        weekday: day.weekday,
-                        open: day.open,
-                        close: day.close,
+                          id: store.storeId,
+                          name: store.name,
+                          coords: {
+                              latitude: store.latitude,
+                              longitude: store.longitude,
+                          },
+                          schedule: {
+                              days: days,
+                          },
                       };
-                    }
-                  );
-
-                  return {
-                    id: store.storeId,
-                    name: store.name,
-                    coords: {
-                      latitude: store.latitude,
-                      longitude: store.longitude,
-                    },
-                    schedule: {
-                      days: days,
-                    },
-                  };
-                }
+                  }
               );
-
-              return storesArray;
             }
           };
 
