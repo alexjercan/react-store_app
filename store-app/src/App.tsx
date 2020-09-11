@@ -6,8 +6,8 @@ import Nav from "./components/Nav";
 const App: React.FC = () => {
   const [maxRadius, setMaxRadius] = useState<number>(100);
   const [radius, setRadius] = useState<number>(10);
-  const [allStores, setAllStores] = useState<TStore[] | undefined>();
-  const [coords, setCoords] = useState<TCoordinates>({
+  const [allStores, setAllStores] = useState<IStore[] | undefined>();
+  const [coords, setCoords] = useState<ICoordinates>({
     latitude: 0,
     longitude: 0,
   });
@@ -15,8 +15,8 @@ const App: React.FC = () => {
   useEffect(() => {
     const getStoresAtLocation = (radius: number) => {
       navigator.geolocation.getCurrentPosition((position) => {
-        const getStoresInRange = (radius: number, coords: TCoordinates) => {
-          const getStores = async (position: TCoordinates, radius: number) => {
+        const getStoresInRange = (radius: number, coords: ICoordinates) => {
+          const getStores = async (position: ICoordinates, radius: number) => {
             const response = await fetch("http://localhost:8080/", {
               method: "POST",
               headers: {
@@ -31,10 +31,10 @@ const App: React.FC = () => {
             if (response.status !== 400) {
               const dataArray: any[] = await response.json();
                 return dataArray.map(
-                  (store): TStore => {
+                  (store): IStore => {
                       const dataOpeningHoursArray: any[] = store.openingHours;
-                      const days: TDaySchedule[] = dataOpeningHoursArray.map(
-                          (day): TDaySchedule => {
+                      const days: IDaySchedule[] = dataOpeningHoursArray.map(
+                          (day): IDaySchedule => {
                               return {
                                   weekday: day.weekday,
                                   open: day.open,
@@ -62,7 +62,7 @@ const App: React.FC = () => {
           getStores(coords, radius).then(setAllStores);
         };
 
-        const pos: TCoordinates = {
+        const pos: ICoordinates = {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         };

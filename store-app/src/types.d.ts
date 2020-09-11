@@ -1,8 +1,8 @@
 interface IStore {
   id: string;
   name: string;
-  coords: TCoordinates;
-  schedule: TSchedule;
+  coords: ICoordinates;
+  schedule: ISchedule;
 }
 
 interface ICoordinates {
@@ -19,8 +19,3 @@ interface IDaySchedule {
   open: number;
   close: number;
 }
-
-type TStore = IStore;
-type TCoordinates = ICoordinates;
-type TDaySchedule = IDaySchedule;
-type TSchedule = ISchedule;

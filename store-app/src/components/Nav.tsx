@@ -28,7 +28,7 @@ const Nav: React.FC<Props> = (props) => {
     }
   };
 
-  const menuClickedHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+  const menuClickedHandler = () => {
     setSetting(!setting);
   };
 

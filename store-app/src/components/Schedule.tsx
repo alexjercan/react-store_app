@@ -2,7 +2,7 @@ import React from "react";
 import "./Schedule.css";
 
 interface Props {
-  schedule: TSchedule;
+  schedule: ISchedule;
 }
 
 const Schedule: React.FC<Props> = (props) => {

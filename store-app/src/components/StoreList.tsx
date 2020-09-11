@@ -4,20 +4,20 @@ import "./StoreList.css";
 
 interface Props {
   radius: number;
-  allStores: TStore[] | undefined;
-  coords: TCoordinates;
+  allStores: IStore[] | undefined;
+  coords: ICoordinates;
 }
 
 const StoreList: React.FC<Props> = (props) => {
-  const [stores, setStores] = useState<TStore[]>();
+  const [stores, setStores] = useState<IStore[]>();
 
   useEffect(() => {
     const getStoresNearCoords = (
-      stores: TStore[] | undefined,
-      coords: TCoordinates,
+      stores: IStore[] | undefined,
+      coords: ICoordinates,
       radius: number
     ) => {
-      const distance = (p: TCoordinates, q: TCoordinates) => {
+      const distance = (p: ICoordinates, q: ICoordinates) => {
         const lat1 = p.latitude;
         const lon1 = p.longitude;
         const lat2 = q.latitude;
@@ -36,7 +36,7 @@ const StoreList: React.FC<Props> = (props) => {
       };
 
       return stores
-        ?.sort((a: TStore, b: TStore) => {
+        ?.sort((a: IStore, b: IStore) => {
           return distance(a.coords, coords) - distance(b.coords, coords);
         })
         .filter((store): boolean => {

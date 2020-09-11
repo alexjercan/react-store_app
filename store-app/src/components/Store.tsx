@@ -4,7 +4,7 @@ import "./Store.css";
 import "./Dropdown.css";
 
 interface Props {
-  store: TStore;
+  store: IStore;
 }
 
 const Store: React.FC<Props> = (props) => {

@@ -5,7 +5,7 @@ import {
     SafeAreaView,
     ScrollView,
     StatusBar,
-    StyleSheet, Text,
+    StyleSheet, 
     View,
 } from 'react-native';
 
@@ -105,20 +105,19 @@ const App = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
           <View>
-            <Text>{allStores?.length}</Text>
             <Nav
                 setRadius={setRadius}
                 radius={radius}
                 maxRadius={maxRadius}
                 setMaxRadius={setMaxRadius}
             />
-            <StoreList radius={radius} coords={coords} allStores={allStores} />
-          </View> 
-        </ScrollView>
+            <ScrollView
+              contentInsetAdjustmentBehavior="automatic"
+              style={styles.scrollView}>
+                <StoreList radius={radius} coords={coords} allStores={allStores} />
+            </ScrollView>
+      </View> 
       </SafeAreaView>
     </>
   );
