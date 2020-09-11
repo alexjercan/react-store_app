@@ -1,9 +1,10 @@
 ﻿import React, {useState} from "react";
 import {
+    Button,
     NativeSyntheticEvent,
+    StyleSheet, Text,
     TextInput,
-    TextInputKeyPressEventData,
-    TextInputSubmitEditingEventData,
+    TextInputSubmitEditingEventData, TouchableOpacity,
     View
 } from "react-native";
 import Slider from "@react-native-community/slider";
@@ -38,21 +39,88 @@ const Nav: React.FC<Props> = (props) => {
     
     return(
         <View>
-            <TextInput
-                keyboardType='numeric'
-                placeholder={"100"}
-                onSubmitEditing={maxRadiusValidate}
-                onChangeText={maxRadiusTextHandler}
-                value={maxRadiusValue.toString()}
-            />
-            <Slider 
-                minimumValue={0}
-                maximumValue={props.maxRadius}
-                onValueChange={radiusRangeHandler}
-                value={Math.min(props.radius, maxRadiusValue)}
-            />
+            <View style={styles.nav}>
+                <View style={styles.kaufland}>
+                    <Text style={styles.kauflandText}>
+                        Kaufland Stores
+                    </Text>
+                </View>
+                <View style={styles.settings}>
+                    <TouchableOpacity onPress={menuClickedHandler}>
+                        <View>
+                            <Text style={styles.settingsText}>
+                                Settings
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <View>
+                {
+                    setting ?
+                        <View>
+                            <TextInput
+                                style={styles.option}
+                                keyboardType='numeric'
+                                placeholder={"100"}
+                                onSubmitEditing={maxRadiusValidate}
+                                onChangeText={maxRadiusTextHandler}
+                                value={maxRadiusValue.toString()}
+                            />
+                            <Slider
+                                style={styles.option}
+                                minimumValue={0}
+                                maximumValue={props.maxRadius}
+                                onValueChange={radiusRangeHandler}
+                                value={Math.min(props.radius, maxRadiusValue)}
+                            />
+                        </View>
+                        : <></>
+                }
+            </View>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    nav: {
+        height: 80,
+        backgroundColor: "#040F16",
+        justifyContent: "center",
+        display: "flex",
+    },
+    kaufland: {
+        alignSelf: "flex-start",
+    },
+    kauflandText: {
+        textAlign: "center",
+        color: "#B80C09",
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    settings: {
+        alignSelf: "flex-end"
+    },
+    settingsText: {
+        textAlign: "center",
+        color: "#B80C09",
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    option: {
+        backgroundColor: "#040F16",
+        color: "#FBFBFF",
+        display: "flex",
+        alignContent: "center",
+        padding: 15,
+        margin: 0, 
+    },
+    input: {
+        
+    },
+    label: {
+        
+    },
+})
 
 export default Nav;
