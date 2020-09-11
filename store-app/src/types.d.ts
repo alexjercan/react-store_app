@@ -22,5 +22,5 @@ interface IDaySchedule {
 
 type TStore = IStore;
 type TCoordinates = ICoordinates;
-type TDaySChedule = IDaySchedule;
+type TDaySchedule = IDaySchedule;
 type TSchedule = ISchedule;

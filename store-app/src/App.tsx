@@ -33,8 +33,8 @@ const App: React.FC = () => {
                 return dataArray.map(
                   (store): TStore => {
                       const dataOpeningHoursArray: any[] = store.openingHours;
-                      const days: TDaySChedule[] = dataOpeningHoursArray.map(
-                          (day): TDaySChedule => {
+                      const days: TDaySchedule[] = dataOpeningHoursArray.map(
+                          (day): TDaySchedule => {
                               return {
                                   weekday: day.weekday,
                                   open: day.open,
