@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {StyleSheet, Text, View} from "react-native";
+import React, {useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
 interface Props {
   store: IStore;
@@ -14,23 +14,19 @@ const Store: React.FC<Props> = (props) => {
 
   return (
     <View>
-        <Text style={styles.storeText}>
-            {props.store.name}
-        </Text> 
+      <Text style={styles.storeText}>{props.store.name}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    store: {
-        
-    },
-    storeText: {
-        textAlign: "left",
-        color: "#FBFBFF",
-        fontSize: 20,
-        padding: 15,
-    },
-})
+  store: {},
+  storeText: {
+    textAlign: 'left',
+    color: '#FBFBFF',
+    fontSize: 20,
+    padding: 15,
+  },
+});
 
 export default Store;

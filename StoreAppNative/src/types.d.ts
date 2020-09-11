@@ -1,21 +1,21 @@
 ﻿interface IStore {
-    id: string;
-    name: string;
-    coords: ICoordinates;
-    schedule: ISchedule;
+  id: string;
+  name: string;
+  coords: ICoordinates;
+  schedule: ISchedule;
 }
 
 interface ICoordinates {
-    latitude: number;
-    longitude: number;
+  latitude: number;
+  longitude: number;
 }
 
 interface ISchedule {
-    days: IDaySchedule[];
+  days: IDaySchedule[];
 }
 
 interface IDaySchedule {
-    weekday: string;
-    open: number;
-    close: number;
+  weekday: string;
+  open: number;
+  close: number;
 }
